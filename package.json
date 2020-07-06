@@ -1,0 +1,35 @@
+{
+  "name": "projet-gt-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "jest",
+    "testWatch": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AiToShiNoHikari/Projet-GT-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AiToShiNoHikari/Projet-GT-API/issues"
+  },
+  "homepage": "https://github.com/AiToShiNoHikari/Projet-GT-API#readme",
+  "devDependencies": {
+    "frisby": "^2.1.2",
+    "jest": "^26.1.0",
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.1"
+  },
+  "jest": {
+    "verbose": true,
+    "testMatch": [
+      "**/__tests__/**/*.spec.js"
+    ]
+  }
+}
