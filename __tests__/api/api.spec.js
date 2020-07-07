@@ -4,12 +4,12 @@ const url = 'localhost:3000/'
 
 //Get all table
 
-it ('GET All Ticket', function () {
+/*it ('GET All Ticket', function () {
   return frisby
     .get(url + 'ticket')
     .expect('status', 200);
 });
-/*
+
 it ('GET All User', function () {
   return frisby
     .get(url + 'user')
