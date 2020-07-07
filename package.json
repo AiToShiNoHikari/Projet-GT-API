@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "test": "jest",
-    "testWatch": "jest --watchAll"
+    "dev": "nodemon index.js",
+    "devTest": "jest",
+    "devTestWatch": "jest --watchAll",
+    "prodReload": "cross-env NODE_ENV=production nodemon index.js",
+    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "test": "cross-env NODE_ENV=production jest",
+    "testWatch": "cross-env NODE_ENV=production jest --watchAll",
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
@@ -20,11 +25,13 @@
   "homepage": "https://github.com/AiToShiNoHikari/Projet-GT-API#readme",
   "devDependencies": {
     "frisby": "^2.1.2",
+    "gulp": "^4.0.2",
     "jest": "^26.1.0",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
-    "@hapi/joi": "^17.1.1"
+    "@hapi/joi": "^17.1.1",
+    "cross-env": "^7.0.2"
   },
   "jest": {
     "verbose": true,
