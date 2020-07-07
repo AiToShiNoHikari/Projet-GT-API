@@ -3,6 +3,11 @@ console.log(process.env.NODE_ENV ? process.env.NODE_ENV : "developpement");
 const express =  require('express');
 const bodyParser = require('body-parser');
 
+//recupération des routes
+const goRouting = require('./module/routing');
+
+const db = require('./module/database/index.model.js');
+
 // Création d'un serveur web avec express
 const goApp = express();
 
@@ -16,6 +21,8 @@ goApp.use(bodyParser.urlencoded({
 }));
 
 goApp.use(cors());
+
+goApp.use('/API', goRouting);
 
 if (process.env.NODE_ENV !== 'production') {
   const listEndpoints = require('express-list-endpoints')
