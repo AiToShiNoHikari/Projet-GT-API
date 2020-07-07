@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon src/index.js",
     "devTest": "jest",
     "devTestWatch": "jest --watchAll",
-    "prodReload": "cross-env NODE_ENV=production nodemon index.js",
+    "prodReload": "cross-env NODE_ENV=production nodemon src/index.js",
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "test": "cross-env NODE_ENV=production jest",
     "testWatch": "cross-env NODE_ENV=production jest --watchAll",
@@ -24,8 +24,14 @@
   },
   "homepage": "https://github.com/AiToShiNoHikari/Projet-GT-API#readme",
   "devDependencies": {
+    "del": "^5.1.0",
     "frisby": "^2.1.2",
     "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-filter": "^6.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-terser-js": "^5.2.2",
+    "gulp-uglify": "^3.0.2",
     "jest": "^26.1.0",
     "nodemon": "^2.0.4"
   },
@@ -36,7 +42,8 @@
   "jest": {
     "verbose": true,
     "testMatch": [
-      "**/__tests__/**/*.spec.js"
+      "**/__tests__/**/*.spec.js",
+      "**/*.spec.js"
     ]
   }
 }
