@@ -1,3 +1,5 @@
+console.log(process.env.NODE_ENV ? process.env.NODE_ENV : "developpement");
+
 const express =  require('express');
 const bodyParser = require('body-parser');
 
