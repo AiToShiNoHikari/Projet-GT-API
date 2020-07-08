@@ -114,9 +114,9 @@ loResult.Ticket.belongsTo(loResult.User, {
 });
 
 sequelize.sync({
-  alter: {
-    drop: false
-  }
+  alter: process.env.NODE_ENV !== 'production' ? {
+    drop: true
+  } : false
 });
 
 module.exports = loResult;
