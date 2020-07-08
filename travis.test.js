@@ -24,6 +24,8 @@ if (process.env.TRAVIS == "true") {
 
       ltUUID = ltUUID.filter(lsE => lsE != lsUUID);
 
+      console.log(ltUUID, lsUUID);
+
       if (!ltUUID.length)
         loTimeOut = setTimeout(goApp.close, 10000, () => console.log("end api"));
     }
