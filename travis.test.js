@@ -35,6 +35,8 @@ if (process.env.TRAVIS == "true") {
           });
 
           loTimeOut = setTimeout(() => {
+            console.log("start end api")
+
             goApp.close(() => console.log("end api"))
 
             lfResovle();
