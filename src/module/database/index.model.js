@@ -37,6 +37,86 @@ for (let lsFile of ltFileList) {
   }
 }
 
-sequelize.sync();
+//relation History-User
+loResult.User.hasMany(loResult.History, {
+  foreignKey: {
+    name: 'fkUser',
+    allowNull: false
+  }
+});
+loResult.History.belongsTo(loResult.User, {
+  foreignKey: {
+    name: 'fkUser',
+    allowNull: false
+  }
+});
+
+//relation History-Ticket
+loResult.Ticket.hasMany(loResult.History, {
+  foreignKey: {
+    name: 'fkTicket',
+    allowNull: false
+  }
+});
+loResult.History.belongsTo(loResult.Ticket, {
+  foreignKey: {
+    name: 'fkTicket',
+    allowNull: false
+  }
+});
+
+//relation Ticket-User Creator
+loResult.User.hasMany(loResult.Ticket, {
+  foreignKey: {
+    name: 'fkUserCreator',
+    allowNull: false
+  },
+  as: 'Creator'
+});
+loResult.Ticket.belongsTo(loResult.User, {
+  foreignKey: {
+    name: 'fkUserCreator',
+    allowNull: false
+  },
+  as: 'Creator'
+});
+
+//relation Ticket-User Responsible
+loResult.User.hasMany(loResult.Ticket, {
+  foreignKey: {
+    name: 'fkUserResponsible',
+    allowNull: true
+  },
+  as: 'Responsible'
+});
+loResult.Ticket.belongsTo(loResult.User, {
+  foreignKey: {
+    name: 'fkUserResponsible',
+    allowNull: true
+  },
+  as: 'Responsible'
+});
+
+//relation Ticket-User Resolver
+loResult.User.hasMany(loResult.Ticket, {
+  foreignKey: {
+    name: 'fkUserResolver',
+    allowNull: true
+  },
+  as: 'Resolver'
+});
+loResult.Ticket.belongsTo(loResult.User, {
+  foreignKey: {
+    name: 'fkUserResolver',
+    allowNull: true
+  },
+  as: 'Resolver'
+});
+
+sequelize.sync({
+  alter: {
+    drop: false
+  }
+});
 
 module.exports = loResult;
