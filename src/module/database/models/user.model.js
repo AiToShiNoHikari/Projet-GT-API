@@ -7,22 +7,22 @@ module.exports = {
     defaultValue: DataTypes.UUIDV4
   },
   userLastName: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING(100),
     allowNull: false,
     validate: {}
   },
   userFirstName: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING(100),
     allowNull: false,
     validate: {}
   },
   userLogin: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING(100),
     allowNull: false,
     validate: {}
   },
   userHash: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING(100),
     allowNull: false,
     validate: {}
   }
