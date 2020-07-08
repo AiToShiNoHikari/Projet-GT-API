@@ -42,6 +42,8 @@ if (process.env.TRAVIS == "true") {
             lfResovle();
           }, 10000);
 
+          loPromise.catch(console.log)
+
           return loPromise;
 
       } else {
