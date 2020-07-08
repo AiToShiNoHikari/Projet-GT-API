@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "devTest": "jest",
-    "devTestWatch": "jest --watchAll",
+    "devTest": "jest --detectOpenHandles",
+    "devTestWatch": "jest --watchAll --detectOpenHandles",
     "prodReload": "cross-env NODE_ENV=production nodemon src/index.js",
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "test": "cross-env NODE_ENV=production jest",
-    "testWatch": "cross-env NODE_ENV=production jest --watchAll",
+    "testWatch": "cross-env NODE_ENV=production jest --watchAll --detectOpenHandles",
     "build": "gulp"
   },
   "repository": {
