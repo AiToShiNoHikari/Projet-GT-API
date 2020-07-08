@@ -17,4 +17,6 @@ typings/
 .env
 .env.test
 
-dist/
+dist/**
+!dist/.git/
+!dist/.git/**
