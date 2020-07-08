@@ -1,10 +1,10 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Sequelize } = require("sequelize");
 
 module.exports = {
   idTicket: {
     type: DataTypes.UUID,
     primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
+    defaultValue: Sequelize.UUIDV4
   },
   ticketCreation: {
     type: DataTypes.DATE,
@@ -29,6 +29,7 @@ module.exports = {
   ticketState: {
     type: DataTypes.TINYINT(1),
     allowNull: false,
+    defaultValue: 0,
     validate: {}
   },
   ticketHardware: {
