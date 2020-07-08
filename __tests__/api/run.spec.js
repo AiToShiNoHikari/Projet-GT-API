@@ -13,4 +13,4 @@ it('test api run', async function() {
     })
 });
 
-afterAll(async (() => await stopApp))
+afterAll(async () => {await stopApp})
