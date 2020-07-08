@@ -8,6 +8,7 @@ if (process.env.TRAVIS == "true") {
 
   let ltUUID = []
   let loTimeOut = null
+  let lfResovle = null
 
   fResult = () => {
     let lsUUID = uuid()
@@ -15,7 +16,10 @@ if (process.env.TRAVIS == "true") {
     if (!!loTimeOut) {
       clearTimeout(loTimeOut)
 
-      loTimeOut = null
+      loTimeOut = null;
+
+      lfResovle();
+      lfResovle = null;
     }
 
     ltUUID.push(lsUUID)
@@ -24,10 +28,23 @@ if (process.env.TRAVIS == "true") {
 
       ltUUID = ltUUID.filter(lsE => lsE != lsUUID);
 
-      console.log(ltUUID, lsUUID);
+      if (!ltUUID.length) {
 
-      if (!ltUUID.length)
-        loTimeOut = setTimeout(goApp.close, 10000, () => console.log("end api"));
+          loPromise = new Promise(function(resolve, reject) {
+            lfResovle = resolve
+          });
+
+          loTimeOut = setTimeout(() => {
+            goApp.close(() => console.log("end api"))
+
+            lfResovle();
+          }, 10000);
+
+      } else {
+        return new Promise(function(resolve, reject) {
+          resolve()
+        });
+      }
     }
   };
 
