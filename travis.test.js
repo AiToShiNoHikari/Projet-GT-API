@@ -9,7 +9,6 @@ if (process.env.TRAVIS == "true") {
   let ltUUID = []
   let loTimeOut = null
 
-
   fResult = () => {
     let lsUUID = uuid()
 

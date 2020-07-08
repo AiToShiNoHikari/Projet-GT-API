@@ -7,7 +7,7 @@ env:
 
 before_install:
   - sudo mysql --version
-  - mysql -u root --password="" < test/travis.sql
+  - sudo mysql -u root --password="" < test/travis.sql
 
 before_script:
   - npm install -g gulp-cli
