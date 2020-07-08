@@ -5,10 +5,7 @@ const terser = require('gulp-terser-js')
 const filter = require('gulp-filter');
 
 function cleanScripts() {
-  return del([
-    'dist/**',
-    '!.git/**'
-  ])
+  return del(['dist/**'])
 }
 
 function minifyJs() {
@@ -34,15 +31,8 @@ function minifyJs() {
     .pipe(gulp.dest('dist'));
 }
 
-function packageJSON() {
-  return gulp.src('package.json')
-    .pipe(gulp.dest('dist'));
-}
-
 gulp.task('clean-scripts', cleanScripts);
 
 gulp.task('minifyJs', minifyJs);
 
-gulp.task('packageJSON', packageJSON);
-
-gulp.task('default', gulp.series(cleanScripts, gulp.parallel(minifyJs, packageJSON)));
+gulp.task('default', gulp.series(cleanScripts, minifyJs));
