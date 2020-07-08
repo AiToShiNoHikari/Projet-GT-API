@@ -1,5 +1,8 @@
 const frisby = require('frisby');
 
+const path = require('path');
+const stopApp = require(path.relative(__dirname, process.cwd()+'/travis.test.js'))();
+
 frisby.baseUrl('http://localhost:3000/API')
 
 it('test api run', async function() {
@@ -9,3 +12,5 @@ it('test api run', async function() {
       result: 'success'
     })
 });
+
+beforeAll(stopApp)

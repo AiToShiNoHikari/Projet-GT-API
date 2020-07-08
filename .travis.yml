@@ -2,6 +2,9 @@ language: node_js
 services:
   - mysql
 
+env:
+  - TRAVIS=true
+
 before_install:
   - sudo mysql --version
   - mysql -e 'CREATE DATABASE IF NOT EXISTS ticket;'
@@ -15,6 +18,4 @@ before_script:
   - npm install -g gulp-cli
 script:
   - gulp
-  - npm start
   - npm test
-  # - mysql -e ' SHOW DATABASES LIKE ticket;'
