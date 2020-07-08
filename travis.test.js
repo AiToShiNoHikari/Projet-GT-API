@@ -40,6 +40,8 @@ if (process.env.TRAVIS == "true") {
             lfResovle();
           }, 10000);
 
+          return loPromise;
+
       } else {
         return new Promise(function(resolve, reject) {
           resolve()
