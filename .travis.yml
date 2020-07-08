@@ -16,4 +16,4 @@ before_script:
 script:
   - gulp
   - npm test
-  - mysql -e ' SHOW DATABASES LIKE ticket;'
+  # - mysql -e ' SHOW DATABASES LIKE ticket;'
