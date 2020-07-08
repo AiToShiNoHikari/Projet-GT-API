@@ -4,7 +4,7 @@ if (process.env.TRAVIS == "true") {
   const {
     uuid
   } = require('uuidv4');
-  const goApp = require('./' + process.env.NODE_ENV == "production" ? "dist" : "src" + '/index.js');
+  const goApp = require('./' + (process.env.NODE_ENV == "production" ? "dist" : "src") + '/index.js');
 
   let ltUUID = []
   let loTimeOut = null
