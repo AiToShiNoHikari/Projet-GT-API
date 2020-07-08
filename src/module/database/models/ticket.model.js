@@ -8,17 +8,17 @@ module.exports = {
   },
   ticketCreation: {
     type: DataTypes.DATE,
-    allowNull: false,
+    allowNull: true,
     validate: {}
   },
   ticketResolve: {
     type: DataTypes.DATE,
-    allowNull: false,
+    allowNull: true,
     validate: {}
   },
   ticketDelete: {
     type: DataTypes.DATE,
-    allowNull: false,
+    allowNull: true,
     validate: {}
   },
   ticketDescription: {
@@ -32,7 +32,7 @@ module.exports = {
     validate: {}
   },
   ticketHardware: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING(100),
     allowNull: false,
     validate: {}
   }
