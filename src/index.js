@@ -33,3 +33,5 @@ if (process.env.NODE_ENV !== 'production') {
 goApp.listen(3000, function() {
   console.log('#### Server launch on port : 3000')
 });
+
+module.export = goApp;

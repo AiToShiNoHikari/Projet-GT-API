@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "devTest": "jest",
-    "devTestWatch": "jest --watchAll",
+    "devTest": "jest --forceExit",
+    "devTestWatch": "jest --watchAll --forceExit",
     "prodReload": "cross-env NODE_ENV=production nodemon src/index.js",
     "start": "cross-env NODE_ENV=production node dist/index.js",
-    "test": "cross-env NODE_ENV=production jest",
-    "testWatch": "cross-env NODE_ENV=production jest --watchAll",
+    "test": "cross-env NODE_ENV=production jest --forceExit",
+    "testWatch": "cross-env NODE_ENV=production jest --watchAll --forceExit",
     "build": "gulp"
   },
   "repository": {
@@ -25,6 +25,7 @@
   "homepage": "https://github.com/AiToShiNoHikari/Projet-GT-API#readme",
   "devDependencies": {
     "del": "^5.1.0",
+    "express-list-endpoints": "^4.0.1",
     "frisby": "^2.1.2",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
@@ -33,7 +34,6 @@
     "gulp-terser-js": "^5.2.2",
     "gulp-uglify": "^3.0.2",
     "jest": "^26.1.0",
-    "express-list-endpoints": "^4.0.1",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
