@@ -8,7 +8,7 @@ const path = require('path');
 const loDefaultParameter = {
   bdd: 'ticket',
   login: 'ticket',
-  pw: 'ticket',
+  pw: '',
   host: 'localhost',
   port: null,
   dialect: 'mysql',
