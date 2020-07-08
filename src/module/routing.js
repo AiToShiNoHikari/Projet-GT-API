@@ -6,13 +6,13 @@ let loRouter = express.Router();
 
 let loDirectoriPath = path.normalize(__dirname + '/routes/');
 
-let ltfileList = fs.readdirSync(loDirectoriPath, {
+let ltFileList = fs.readdirSync(loDirectoriPath, {
   withFileTypes: true
 });
 
-for (let lsfile of ltfileList) {
-  if (lsfile.isFile()) {
-    let lsFileName = lsfile.name;
+for (let lsFile of ltFileList) {
+  if (lsFile.isFile()) {
+    let lsFileName = lsFile.name;
     let ltFileNameSplit = lsFileName.split('.');
     if (ltFileNameSplit.length == 3 && ltFileNameSplit[1] == "route" && ltFileNameSplit[2] == "js") {
 

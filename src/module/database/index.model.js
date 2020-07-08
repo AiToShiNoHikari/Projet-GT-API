@@ -7,14 +7,14 @@ let loResult = {};
 
 let loDirectoriPath = path.normalize(__dirname + '/models/');
 
-let ltfileList = fs.readdirSync(loDirectoriPath, {
+let ltFileList = fs.readdirSync(loDirectoriPath, {
   withFileTypes: true
 });
 
-for (let lsfile of ltfileList) {
-  if (lsfile.isFile()) {
+for (let lsFile of ltFileList) {
+  if (lsFile.isFile()) {
 
-    let lsFileName = lsfile.name;
+    let lsFileName = lsFile.name;
 
     let ltFileNameSplit = lsFileName.split('.');
 
