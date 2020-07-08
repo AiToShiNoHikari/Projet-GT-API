@@ -37,4 +37,4 @@ for (let lsFile of ltFileList) {
   }
 }
 
-module.exports = loRouter;
+module.exports = loResult;
