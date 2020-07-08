@@ -1,6 +1,7 @@
 let fResult = null
 
-if (process.env.TRAVIS == "true") {
+if (true) {
+// if (process.env.TRAVIS == "true") {
   const {
     uuid
   } = require('uuidv4');
