@@ -15,5 +15,6 @@ before_script:
   - npm install -g gulp-cli
 script:
   - gulp
+  - npm start
   - npm test
   # - mysql -e ' SHOW DATABASES LIKE ticket;'
