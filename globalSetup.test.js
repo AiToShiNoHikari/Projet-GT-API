@@ -1,16 +1,13 @@
 const frisby = require('frisby');
-const randomElement = require('../function/randomElement.fn');
-
-require(require('path').relative(__dirname, process.cwd() + '/travis.test.js'));
 
 const gsBaseUrl = 'http://localhost:3000/API'
 
-let loPromise = null
-
-let lsToken = null;
-
 module.exports = async () => {
-  if (!loPromise) loPromise = new Promise(function(resolve, reject) {
+  // if (process.env.TRAVIS == "true")
+  if (true)
+    global.__app__ = require('./' + (process.env.NODE_ENV == "production" ? "dist" : "src") + '/index.js');
+
+  let loPromise = new Promise(function(resolve, reject) {
     frisby.post(gsBaseUrl + '/authentification/login', {
         userLogin: "root",
         userPassword: "root"
@@ -49,10 +46,8 @@ module.exports = async () => {
             })
         }
       })
-
   });
 
-  if (!lsToken) lsToken = await loPromise
-  return lsToken;
+  process.env.__testToken__ = await loPromise
+  process.env.__baseUrl__ = gsBaseUrl
 }
-//testToken

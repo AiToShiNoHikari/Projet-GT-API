@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "devTest": "jest --forceExit",
-    "devTestWatch": "jest --watchAll --forceExit",
+    "dev": "cross-env NODE_ENV=developpement nodemon src/index.js",
+    "devTest": "cross-env NODE_ENV=developpement jest --forceExit",
+    "devTestWatch": "cross-env NODE_ENV=developpement jest --watchAll --forceExit",
     "prodReload": "cross-env NODE_ENV=production nodemon src/index.js",
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "test": "cross-env NODE_ENV=production jest --forceExit",
@@ -51,6 +51,8 @@
     "testMatch": [
       "**/__tests__/**/*.spec.js",
       "**/*.spec.js"
-    ]
+    ],
+    "globalSetup" : "<rootDir>/globalSetup.test.js",
+    "setupFiles" : ["<rootDir>/setup.test.js"]
   }
 }
