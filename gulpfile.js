@@ -37,13 +37,17 @@ function minifyJs() {
     .pipe(gulp.dest('dist'));
 }
 
-function prodPackage() {
-  let loDependencies = require('./package.json').dependencies;
-  return gulp.src('./dist/package.json')
-    .pipe(jeditor({
-      dependencies: loDependencies
-    }))
-    .pipe(gulp.dest('./dist'));
+function prodPackage(cb) {
+  if (process.env.TRAVIS == "true"){
+    let loDependencies = require('./package.json').dependencies;
+    return gulp.src('./dist/package.json')
+      .pipe(jeditor({
+        dependencies: loDependencies
+      }))
+      .pipe(gulp.dest('./dist'));
+  } else {
+    return cb()
+  }
 }
 
 gulp.task('clean-scripts', cleanScripts);
