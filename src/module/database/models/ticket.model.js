@@ -11,7 +11,7 @@ module.exports = {
   },
   ticketCreation: {
     type: DataTypes.DATE,
-    allowNull: true,
+    allowNull: false,
     validate: {}
   },
   ticketResolve: {

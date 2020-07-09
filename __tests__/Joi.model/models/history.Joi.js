@@ -5,6 +5,6 @@ const UUID = require('./UUID.Joi')
 module.exports = () => Joi.object({
   idHistory: UUID().required(),
   historyModif: Joi.date().required(),
-  historyDescription: Joi.text().required(),
+  historyDescription: Joi.string().required(),
   historyState: Joi.tinyint().required()
 })

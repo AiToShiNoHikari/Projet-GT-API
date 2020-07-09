@@ -14,7 +14,16 @@ function randomUser() {
   }
 }
 
+function randomTicket() {
+  return {
+    ticketCreation: Date.now(),
+    ticketDescription: randomText(),
+    ticketHardware: randomText(),
+  }
+}
+
 module.exports = {
   randomText: randomText,
-  randomUser: randomUser
+  randomUser: randomUser,
+  randomTicket: randomTicket
 }
