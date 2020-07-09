@@ -10,7 +10,7 @@
     "prodReload": "cross-env NODE_ENV=production nodemon src/index.js",
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "test": "cross-env NODE_ENV=production jest --forceExit",
-    "testWatch": "cross-env NODE_ENV=production jest --watchAll --forceExit",
+    "testWatch": "cross-env NODE_ENV=production jest --watchAll",
     "build": "gulp"
   },
   "repository": {
@@ -54,7 +54,6 @@
       "**/*.spec.js"
     ],
     "globalSetup": "<rootDir>/globalSetup.test.js",
-    "globalTeardown": "<rootDir>/globalTeardown.test.js",
     "setupFiles": [
       "<rootDir>/setup.test.js"
     ]

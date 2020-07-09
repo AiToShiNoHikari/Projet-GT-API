@@ -19,8 +19,8 @@ module.exports = () => Joi.object({
   ticketDescription: Joi.string().required(),
   ticketState: Joi.number().integer().min(0).max(4).required(),
   ticketHardware: Joi.string().min(2).max(100).required(),
-  Creator: fUser(),
-  Responsible: fUser().allow(null),
-  Resolver: fUser().allow(null),
-  History : Joi.array().items(history()).required().allow(null)
+  ticketCreator: fUser(),
+  ticketResponsible: fUser().allow(null),
+  ticketResolver: fUser().allow(null),
+  ticketHistory : Joi.array().items(history()).required().allow(null)
 })

@@ -5,6 +5,9 @@ const gsBaseUrl = 'http://localhost:3000/API'
 module.exports = async () => {
   if (process.env.TRAVIS == "true")
     global.__app__ = require('./' + (process.env.NODE_ENV == "production" ? "dist" : "src") + '/index.js');
+  // else if (process.env.testWatch == "true")
+  //   global.__app__ = require('./src/index.js');
+
   // if (true)
   //   global.__app__ = require('./src/index.js');
 
