@@ -3,7 +3,7 @@ const crypto = require('crypto');
 
 const db = require("../database/index.model");
 const loPwGestion = require('../function/pwGestion.fn');
-const loErrorList = require('../error.list');
+const goErrorList = require('../error.list');
 
 const pnTokenValidity = 3600000; // durée en ms
 
@@ -108,8 +108,8 @@ function fConnect(req, res) {
                   token: psToken
                 });
               })
-            } else throw Error(loErrorList.badPW);
-          } else throw Error(loErrorList.badLogin);
+            } else throw Error(goErrorList.badPW);
+          } else throw Error(goErrorList.badLogin);
         })
       else if (req.body.userPassword == "root" && req.body.userLogin == "root") {
         return fCreateTempToken().then(psToken => {
@@ -117,7 +117,7 @@ function fConnect(req, res) {
             token: psToken
           });
         })
-      } else throw Error(loErrorList.badLogin);
+      } else throw Error(goErrorList.badLogin);
 
     })
 }
@@ -149,7 +149,7 @@ goAuthentificationRouter.post('/login', (req, res) => {
     });
   } else
     res.json({
-      error: loErrorList.badData
+      error: goErrorList.badData
     });
 })
 
@@ -179,24 +179,23 @@ goRouter.use("/", (req, res, next) => {
 
       if (ltPath[ltPath.length - 1] == "user") {
         req.token = psToken;
+        gsTempsTokens = null;
         next();
       } else {
         res.json({
-          error: 'Token is not valid'
+          error: goErrorList.badToken
         });
       }
     } else {
       res.json({
-        error: 'Token is not valid'
+        error: goErrorList.badToken
       });
     }
-
-    gsTempsTokens = null;
   } else if (psToken) {
     fTestToken(psToken).then(poUser => {
       if (poUser == null) {
         res.json({
-          error: 'Token is not valid'
+          error: goErrorList.badToken
         });
       } else {
         req.user = poUser;
@@ -217,7 +216,7 @@ goRouter.use("/", (req, res, next) => {
   } else {
     if (process.env.NODE_ENV === 'production') {
       res.json({
-        error: "Not auth"
+        error: goErrorList.noAuth
       });
     } else {
       db.User.findOne({

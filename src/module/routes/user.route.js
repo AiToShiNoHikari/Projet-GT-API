@@ -5,17 +5,18 @@ const {
 } = require('uuidv4');
 
 const loPwGestion = require('../function/pwGestion.fn');
+const loRigthGestion = require('../function/rigthGestion.fn');
 
 let loRouter = express.Router();
 
-loRouter.post('/', function(req, res) {
+loRouter.post('/', loRigthGestion.filter('createUser'), function(req, res) {
 
   let loUser = {
     idUser: uuid(),
     userLastName: req.body.userLastName,
     userFirstName: req.body.userFirstName,
     userLogin: req.body.userLogin,
-    userRight: req.body.userRight,
+    userRight: req.token.indexOf('temp_') == 0 ? loRigthGestion.rigth('admin') : req.body.userRight,
   }
 
   loUser.userHash = loPwGestion.fHashPW(req.body.userPassword, loUser)
