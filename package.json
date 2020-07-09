@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=developpement nodemon src/index.js",
-    "devTest": "cross-env NODE_ENV=developpement jest",
-    "devTestWatch": "cross-env NODE_ENV=developpement jest --watchAll",
+    "devTest": "cross-env NODE_ENV=developpement jest --forceExit",
+    "devTestWatch": "cross-env NODE_ENV=developpement jest --watchAll --forceExit",
     "prodReload": "cross-env NODE_ENV=production nodemon src/index.js",
     "start": "cross-env NODE_ENV=production node dist/index.js",
-    "test": "cross-env NODE_ENV=production jest",
-    "testWatch": "cross-env NODE_ENV=production jest --watchAll",
+    "test": "cross-env NODE_ENV=production jest --forceExit",
+    "testWatch": "cross-env NODE_ENV=production jest --watchAll --forceExit",
     "build": "gulp"
   },
   "repository": {
