@@ -4,7 +4,9 @@ const gsBaseUrl = 'http://localhost:3000/API'
 
 module.exports = async () => {
   if (process.env.TRAVIS == "true")
-  global.__app__ = require('./' + (process.env.NODE_ENV == "production" ? "dist" : "src") + '/index.js');
+    global.__app__ = require('./' + (process.env.NODE_ENV == "production" ? "dist" : "src") + '/index.js');
+
+  console.log(global.__app__);
 
   let loPromise = new Promise(function(resolve, reject) {
     frisby.post(gsBaseUrl + '/authentification/login', {
