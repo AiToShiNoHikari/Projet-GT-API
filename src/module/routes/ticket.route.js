@@ -39,7 +39,6 @@ loRouter.get('/:idTicket', function(req, res) {
 });
 
 loRouter.post('/', function(req, res) {
-  console.log(req.body);
   db.Ticket.create(req.body)
     .then((ticket) => {
       res.json({
@@ -50,6 +49,38 @@ loRouter.post('/', function(req, res) {
         ticketDescription: ticket.ticketDescription,
         ticketState: ticket.ticketState,
         ticketHardware: ticket.ticketHardware
+      });
+    });
+});
+
+loRouter.put('/:idTicket', function(req, res) {
+  db.Ticket.update({
+      where: {
+        idTicket: req.params.idTicket
+      }
+    })
+    .then((ticket) => {
+      res.json({
+        idTicket: ticket.idTicket,
+        ticketCreation: ticket.ticketCreation,
+        ticketResolve: ticket.ticketResolve,
+        ticketDelete: ticket.ticketDelete,
+        ticketDescription: ticket.ticketDescription,
+        ticketState: ticket.ticketState,
+        ticketHardware: ticket.ticketHardware
+      });
+    });
+});
+
+loRouter.delete('/:idTicket', function(req, res) {
+  db.Ticket.destroy({
+      where: {
+        idTicket: req.params.idTicket
+      }
+    })
+    .then((ticket) => {
+      res.json({
+        result: 'success'
       });
     });
 });

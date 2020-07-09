@@ -1,10 +1,10 @@
 const frisby = require('frisby');
 
-const url = 'localhost:3000/'
+const url = 'http://localhost:3000/API/'
 
 //Get all table
-
-/*it ('GET All Ticket', function () {
+/*
+it ('GET All Ticket', function () {
   return frisby
     .get(url + 'ticket')
     .expect('status', 200);
@@ -26,7 +26,7 @@ it ('GET All History', function () {
 
 it ('GET By Id Ticket', function () {
   return frisby
-    .get(url + 'ticket/1')
+    .get(url + 'ticket/921747be-bdc7-4936-b885-45ef2131c6be')
     .expect('status', 200);
 });
 
@@ -38,7 +38,7 @@ it ('GET By Id User', function () {
 
 it ('GET By Id History', function () {
   return frisby
-    .get(url + 'history/1')
+    .get(url + 'history/6350dc3e-29c1-4508-b99f-7dc4d49a1099')
     .expect('status', 200);
 });
 
@@ -46,16 +46,11 @@ it ('GET By Id History', function () {
 
 it ('POST By Id Ticket', function () {
   return frisby
-    .post(url + 'ticket/1', {
-      fkUserCreator : '',
-      fkUserResponsible : '',
-      fkUserResolver : '',
-      ticketCreation : '',
-      ticketResolve : '',
-      ticketDelete : '',
-      ticketDescription : '',
-      ticketState : '',
-      ticketHardware : ''
+    .post(url + 'ticket', {
+      ticketCreation : '2020-07-15 22:00:00',
+      ticketDescription : 'description',
+      ticketState : '1',
+      ticketHardware : 'hardware'
     })
     .expect('status', 200);
 });
@@ -73,12 +68,10 @@ it ('POST By Id User', function () {
 
 it ('POST By Id History', function () {
   return frisby
-    .post(url + 'history/1', {
-      fkTicket  : '',
-      fkUser  : '',
-      historyModif  : '',
-      historyDescription : '',
-      historyState : ''
+    .post(url + 'history', {
+      historyModif  : '2020-07-15 22:00:00',
+      historyDescription : 'description',
+      historyState : '1'
     })
     .expect('status', 200);
 });
@@ -87,16 +80,12 @@ it ('POST By Id History', function () {
 
 it ('PUT By Id Ticket', function () {
   return frisby
-    .put(url + 'ticket/1', {
-      fkUserCreator : '',
-      fkUserResponsible : '',
-      fkUserResolver : '',
-      ticketCreation : '',
-      ticketResolve : '',
-      ticketDelete : '',
-      ticketDescription : '',
-      ticketState : '',
-      ticketHardware : ''
+    .put(url + 'ticket/921747be-bdc7-4936-b885-45ef2131c6be', {
+      ticketCreation : '2020-07-15 22:00:00',
+      ticketResolve : '2020-07-15 23:00:00',
+      ticketDescription : 'description',
+      ticketState : '2',
+      ticketHardware : 'hardware'
     })
     .expect('status', 200);
 });
@@ -114,12 +103,10 @@ it ('PUT By Id User', function () {
 
 it ('PUT By Id History', function () {
   return frisby
-    .put(url + 'history/1', {
-      fkTicket  : '',
-      fkUser  : '',
-      historyModif  : '',
-      historyDescription : '',
-      historyState : ''
+    .put(url + 'history/6350dc3e-29c1-4508-b99f-7dc4d49a1099', {
+      historyModif  : '2020-07-15 23:00:00',
+      historyDescription : 'description',
+      historyState : '2'
     })
     .expect('status', 200);
 });
@@ -128,7 +115,7 @@ it ('PUT By Id History', function () {
 
 it ('DELETE By Id Ticket', function () {
   return frisby
-    .del(url + 'ticket/1')
+    .del(url + 'ticket/f9f34e74-600b-4e14-9eae-9d2bf7763079')
     .expect('status', 204);
 });
 
@@ -138,8 +125,9 @@ it ('DELETE By Id User', function () {
     .expect('status', 204);
 });
 
+
 it ('DELETE By Id History', function () {
   return frisby
-    .del(url + 'history/1')
+    .del(url + 'history/d728bf53-2f34-4301-b64e-b286e3d0ddc7')
     .expect('status', 204);
 });*/

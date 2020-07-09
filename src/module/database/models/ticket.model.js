@@ -1,4 +1,7 @@
-const { DataTypes, Sequelize } = require("sequelize");
+const {
+  DataTypes,
+  Sequelize
+} = require("sequelize");
 
 module.exports = {
   idTicket: {
@@ -35,6 +38,8 @@ module.exports = {
   ticketHardware: {
     type: DataTypes.STRING(100),
     allowNull: false,
-    validate: {}
+    validate: {
+      len: [2, 100]
+    }
   }
 }
