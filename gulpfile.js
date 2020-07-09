@@ -3,9 +3,15 @@ const sourcemaps = require('gulp-sourcemaps');
 const del = require('del');
 const terser = require('gulp-terser-js')
 const filter = require('gulp-filter');
+const jeditor = require("gulp-json-editor");
 
 function cleanScripts() {
-  return del(['dist/**'])
+  return del([
+    'dist/**',
+    '!dist/.git/**',
+    '!dist/.gitignore',
+    '!dist/package.json',
+  ])
 }
 
 function minifyJs() {
@@ -31,8 +37,19 @@ function minifyJs() {
     .pipe(gulp.dest('dist'));
 }
 
+function prodPackage() {
+  let loDependencies = require('./package.json').dependencies;
+  return gulp.src('./dist/package.json')
+    .pipe(jeditor({
+      dependencies: loDependencies
+    }))
+    .pipe(gulp.dest('./dist'));
+}
+
 gulp.task('clean-scripts', cleanScripts);
 
 gulp.task('minifyJs', minifyJs);
 
-gulp.task('default', gulp.series(cleanScripts, minifyJs));
+gulp.task('prodPackage', prodPackage);
+
+gulp.task('default', gulp.series(cleanScripts, minifyJs, prodPackage));
