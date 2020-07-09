@@ -38,8 +38,7 @@ function minifyJs() {
 }
 
 function prodPackage(cb) {
-  // if (process.env.TRAVIS == "true"){
-  if (true) {
+  if (process.env.TRAVIS != "true"){
     let loDependencies = require('./package.json').dependencies;
     return gulp.src('./dist/package.json')
       .pipe(jeditor({
