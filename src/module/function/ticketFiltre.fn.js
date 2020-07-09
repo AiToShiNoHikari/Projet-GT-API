@@ -1,5 +1,8 @@
 module.exports = {
   ticketFiltre: (poTicket) => {
+    if (poTicket.tableHistories)
+      console.log(JSON.parse(JSON.stringify(poTicket)));
+
     let poTicketResult = {}
 
     poTicketResult.idTicket = poTicket.idTicket
@@ -16,22 +19,31 @@ module.exports = {
 
     poTicketResult.ticketHardware = poTicket.ticketHardware
 
-    poTicketResult.Responsible = !!poTicket.Responsible ? {
-        idUser: poTicket.Responsible.idUser,
-        userLastName: poTicket.Responsible.userLastName,
-        userFirstName: poTicket.Responsible.userFirstName
-    } : null
+    poTicketResult.History = !!poTicket.tableHistories ? poTicket.tableHistories.map(poHistory => {
+      return {
+        idHistory: poHistory.idHistory,
+        historyModif: poHistory.historyModif,
+        historyDescription: poHistory.historyDescription,
+        historyState: poHistory.historyState
+      }
+    }) : null
 
     poTicketResult.Creator = {
-        idUser: poTicket.Creator.idUser,
-        userLastName: poTicket.Creator.userLastName,
-        userFirstName: poTicket.Creator.userFirstName
+      idUser: poTicket.Creator.idUser,
+      userLastName: poTicket.Creator.userLastName,
+      userFirstName: poTicket.Creator.userFirstName
     }
 
     poTicketResult.Resolver = !!poTicket.Resolver ? {
-        idUser: poTicket.Resolver.idUser,
-        userLastName: poTicket.Resolver.userLastName,
-        userFirstName: poTicket.Resolver.userFirstName
+      idUser: poTicket.Resolver.idUser,
+      userLastName: poTicket.Resolver.userLastName,
+      userFirstName: poTicket.Resolver.userFirstName
+    } : null
+
+    poTicketResult.Responsible = !!poTicket.Responsible ? {
+      idUser: poTicket.Responsible.idUser,
+      userLastName: poTicket.Responsible.userLastName,
+      userFirstName: poTicket.Responsible.userFirstName
     } : null
 
     // {

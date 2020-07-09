@@ -12,11 +12,9 @@ loRouter.get('/', function(req, res) {
       'Creator',
       'Resolver'
     ]
-  }).then((poticket) => {
-    console.log(poticket);
-    poticket = poticket.map(loTicketFiltre.ticketFiltre)
-      console.log(poticket);
-    res.json(poticket);
+  }).then((poTickets) => {
+    poTickets = poTickets.map(loTicketFiltre.ticketFiltre)
+    res.json(poTickets);
   });
 });
 
@@ -28,10 +26,16 @@ loRouter.get('/:idTicket', function(req, res) {
     include: [
       'Responsible',
       'Creator',
-      'Resolver'
+      'Resolver',
+      {
+        model: db.History,
+        include: [
+          db.User
+        ]
+      }
     ]
-  }).then((poticket) => {
-    res.json(loTicketFiltre.ticketFiltre(poticket));
+  }).then((poTicket) => {
+    res.json(loTicketFiltre.ticketFiltre(poTicket));
   });
 });
 
@@ -42,60 +46,74 @@ loRouter.post('/', function(req, res) {
     ticketHardware: req.body.ticketHardware,
     fkUserCreator: req.user.idUser
   }).then((poNewTicket) => {
-    return db.Ticket.findOne({
-      where: {
-        idTicket: poNewTicket.idTicket
-      },
-      include: [
-        'Responsible',
-        'Creator',
-        'Resolver'
-      ]
-    }).then((poTicket) => {
-      res.json(loTicketFiltre.ticketFiltre(poTicket));
-    });
+    return db.History.create({
+        historyModif: req.body.ticketCreation,
+        historyDescription: req.body.historyDescription,
+        historyState: req.body.historyState,
+        fkUser: req.user.idUser,
+        fkTicket: poNewTicket.idTicket
+      })
+      .then(() => db.Ticket.findOne({
+        where: {
+          idTicket: poNewTicket.idTicket
+        },
+        include: [
+          'Responsible',
+          'Creator',
+          'Resolver',
+          {
+            model: db.History,
+            include: [
+              db.User
+            ]
+          }
+        ]
+      })).then((poTicket) => {
+        res.json(loTicketFiltre.ticketFiltre(poTicket));
+      });
   });
 });
 
 loRouter.put('/:idTicket', function(req, res) {
-  db.Ticket.update({
-      where: {
-        idTicket: req.params.idTicket
-      },
-      include: [
-        'Responsible',
-        'Creator',
-        'Resolver'
-      ]
+  db.History.create({
+    historyModif: req.body.historyModif,
+    historyDescription: req.body.historyDescription,
+    historyState: req.body.historyState,
+    fkUser: req.user.idUser,
+    fkTicket: req.params.idTicket
+  })
+
+
+
+  /*db.Ticket.update({
+      idTicket: poTicket.idTicket,
+      ticketResolve: poTicket.ticketResolve,
+      ticketDescription: poTicket.ticketDescription,
+      ticketState: poTicket.ticketState,
     })
-    .then((poticket) => {
+    .then((poTicket) => {
       res.json({
-        idTicket: poticket.idTicket,
-        ticketCreation: poticket.ticketCreation,
-        ticketResolve: poticket.ticketResolve,
-        ticketDelete: poticket.ticketDelete,
-        ticketDescription: poticket.ticketDescription,
-        ticketState: poticket.ticketState,
-        ticketHardware: poticket.ticketHardware
       });
-    });
+    });*/
 });
 
 loRouter.delete('/:idTicket', function(req, res) {
   db.Ticket.destroy({
       where: {
         idTicket: req.params.idTicket
-      },
-      include: [
-        'Responsible',
-        'Creator',
-        'Resolver'
-      ]
+      }
     })
-    .then((poticket) => {
-      res.json({
-        result: 'success'
-      });
+    .then((result) => {
+      if (result)
+        res.status(204)
+      else
+        res.status(404);
+
+      res.json();
+    })
+    .catch((err) => {
+      res.status(400);
+      res.json(err);
     });
 });
 

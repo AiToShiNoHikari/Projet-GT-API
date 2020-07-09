@@ -1,6 +1,7 @@
 const frisby = require('frisby');
 const Joi = frisby.Joi;
 const UUID = require('./UUID.Joi')
+const history = require('./history.Joi')
 
 function fUser() {
   return Joi.object({
@@ -16,9 +17,10 @@ module.exports = () => Joi.object({
   ticketResolve: Joi.date().allow(null),
   ticketDelete: Joi.date().allow(null),
   ticketDescription: Joi.string().required(),
-  ticketState: Joi.number().integer().min(0).max(3).required(),
+  ticketState: Joi.number().integer().min(0).max(4).required(),
   ticketHardware: Joi.string().min(2).max(100).required(),
   Creator: fUser(),
   Responsible: fUser().allow(null),
-  Resolver: fUser().allow(null)
+  Resolver: fUser().allow(null),
+  History : Joi.array().items(history()).required().allow(null)
 })

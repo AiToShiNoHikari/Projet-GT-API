@@ -30,6 +30,20 @@ it('create Ticket', function() {
     })
 })
 
+it('update Ticket', function() {
+  if (ticket) {
+    return frisby
+      .put(gsBaseUrl + '/ticket/' + ticket.idTicket, {
+        historyModif: Date.now(),
+        historyDescription: randomElement.randomText(),
+        historyState: 2
+      })
+      .expect('status', 200)
+      .expect('jsonTypesStrict', modelJoi.ticket())
+      // .expect('json', newTicket)
+  }
+})
+
 it('GET Ticket by ID', function() {
   if (ticket) {
     return frisby
