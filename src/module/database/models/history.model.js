@@ -1,4 +1,7 @@
-const { DataTypes, Sequelize } = require("sequelize");
+const {
+  DataTypes,
+  Sequelize
+} = require("sequelize");
 
 module.exports = {
   idHistory: {
@@ -19,6 +22,7 @@ module.exports = {
   historyState: {
     type: DataTypes.TINYINT(1),
     allowNull: false,
+    defaultValue: 0,
     validate: {}
   }
 }

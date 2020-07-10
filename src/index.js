@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 
 //recupération des routes
 const goRouting = require('./module/routing');
+const goAuthentification = require('./module/authentification/authentification.middelware');
 
 const db = require('./module/database/index.model.js');
 
@@ -22,6 +23,7 @@ goApp.use(bodyParser.urlencoded({
 
 goApp.use(cors());
 
+goApp.use('/API', goAuthentification);
 goApp.use('/API', goRouting);
 
 if (process.env.NODE_ENV !== 'production') {
@@ -30,8 +32,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // Lancer le serveur sur le port 3000
-goApp.listen(3000, function() {
+module.exports = goApp.listen(3000, function() {
   console.log('#### Server launch on port : 3000')
 });
-
-module.export = goApp;
