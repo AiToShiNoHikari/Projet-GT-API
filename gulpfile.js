@@ -38,7 +38,7 @@ function minifyJs() {
 }
 
 function prodPackage(cb) {
-  if (process.env.TRAVIS != "true"){
+  if (require('fs').existsSync(require('path').normalize(__dirname + '/dist/package.json'))){
     let loDependencies = require('./package.json').dependencies;
     return gulp.src('./dist/package.json')
       .pipe(jeditor({
