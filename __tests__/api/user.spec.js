@@ -14,3 +14,10 @@ it('create User', function() {
     .expect('jsonTypesStrict', modelJoi.user())
     .expect('json', newUserReturn);
 });
+
+it('get All User', function() {
+  return frisby
+    .get(process.env.__baseUrl__ + '/user')
+    .expect('status', 200)
+    .expect('jsonTypesStrict', modelJoi.userList());
+});

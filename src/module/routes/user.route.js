@@ -9,8 +9,25 @@ const loRigthGestion = require('../function/rigthGestion.fn');
 
 let loRouter = express.Router();
 
-loRouter.post('/', loRigthGestion.filter('createUser'), function(req, res) {
+loRouter.get('/', function(req, res) {
+  db.User.findAll().then((poUsers) => {
+      poUsers = poUsers.map(poUser => {
+        return {
+          idUser: poUser.idUser,
+          userLastName: poUser.userLastName,
+          userFirstName: poUser.userFirstName,
+          userRight: poUser.userRight
+        };
+      })
+      res.json(poUsers);
+    })
+    .catch(paError => {
+      res.status(400)
+      res.json(paError);
+    })
+});
 
+loRouter.post('/', loRigthGestion.filter('createUser'), function(req, res) {
   let loUser = {
     idUser: uuid(),
     userLastName: req.body.userLastName,
@@ -22,19 +39,19 @@ loRouter.post('/', loRigthGestion.filter('createUser'), function(req, res) {
   loUser.userHash = loPwGestion.fHashPW(req.body.userPassword, loUser)
 
   db.User.create(loUser)
-  .then(poUser => {
-    res.json({
-      idUser: poUser.idUser,
-      userLastName: poUser.userLastName,
-      userFirstName: poUser.userFirstName,
-      userLogin: poUser.userLogin,
-      userRight: poUser.userRight,
-    });
-  })
-  .catch(paError => {
-    res.status(400)
-    res.json(paError);
-  })
+    .then(poUser => {
+      res.json({
+        idUser: poUser.idUser,
+        userLastName: poUser.userLastName,
+        userFirstName: poUser.userFirstName,
+        userLogin: poUser.userLogin,
+        userRight: poUser.userRight,
+      });
+    })
+    .catch(paError => {
+      res.status(400)
+      res.json(paError);
+    })
 
 });
 
