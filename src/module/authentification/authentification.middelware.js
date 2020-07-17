@@ -145,7 +145,7 @@ let goRouter = express.Router();
 
 let goAuthentificationRouter = express.Router();
 
-//vérification de la connexion
+//route de connexion
 goAuthentificationRouter.post('/login', (req, res) => {
   if (req.body.userLogin != null && req.body.userPassword != null) {
     fConnect(req, res).catch(err => {
@@ -159,7 +159,7 @@ goAuthentificationRouter.post('/login', (req, res) => {
     });
 })
 
-//vérification de la deconnexion
+//route de deconnexion
 goAuthentificationRouter.use('/disconnect', (req, res) => {
   fDisconnect(req, res).then(() => {
       res.json({
@@ -174,8 +174,10 @@ goAuthentificationRouter.use('/disconnect', (req, res) => {
     });
 })
 
+//connexion des routes de connexion et de déconnexion à la route d'authentification
 goRouter.use("/authentification", goAuthentificationRouter);
 
+//middleware de vérification du token
 goRouter.use("/", (req, res, next) => {
   let psToken = req.headers['token'];
 
