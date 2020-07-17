@@ -5,6 +5,7 @@ const {
 const fs = require('fs');
 const path = require('path');
 
+//paramètres par défaut
 const loDefaultParameter = {
   bdd: 'ticket',
   login: 'ticket',

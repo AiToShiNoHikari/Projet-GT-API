@@ -1,3 +1,4 @@
+//les erreurs
 module.exports = {
   badLogin: process.env.NODE_ENV == 'production' ? 'Le login et/ou le mot de passe incorrect' : 'Le login incorrect',
   badPW: process.env.NODE_ENV == 'production' ? 'Le login et/ou le mot de passe incorrect' : 'Le mot de passe incorrect',

@@ -11,11 +11,13 @@ let goConnectedTokens = {};
 
 let gsTempsTokens = null;
 
+//supprimer le token
 function fDeleteToken(psToken) {
   console.log(`delete token => ${psToken}`);
   delete goConnectedTokens[psToken];
 }
 
+//tester le token
 function fTestToken(psToken) {
   return new Promise((pResolve, pReject) => {
     if (!!goConnectedTokens[psToken]) {
@@ -34,7 +36,7 @@ function fTestToken(psToken) {
 
   return lPromise;
 }
-
+//créer un token
 function fCreateConnectedToken(poUser) {
   return new Promise((pResolve, pReject) => {
     try {
@@ -74,6 +76,7 @@ function fCreateConnectedToken(poUser) {
   });
 }
 
+//créer un token temporaire
 function fCreateTempToken() {
   return new Promise((pResolve, pReject) => {
     try {
@@ -91,6 +94,7 @@ function fCreateTempToken() {
   });
 }
 
+//effectuer et vérifier la connexion
 function fConnect(req, res) {
   return db.User.count({})
     .then(pnCount => {
@@ -122,6 +126,7 @@ function fConnect(req, res) {
     })
 }
 
+//se déconnecter
 function fDisconnect(req, res) {
   return new Promise((pResolve, pReject) => {
 
@@ -140,6 +145,7 @@ let goRouter = express.Router();
 
 let goAuthentificationRouter = express.Router();
 
+//vérification de la connexion
 goAuthentificationRouter.post('/login', (req, res) => {
   if (req.body.userLogin != null && req.body.userPassword != null) {
     fConnect(req, res).catch(err => {
@@ -153,7 +159,7 @@ goAuthentificationRouter.post('/login', (req, res) => {
     });
 })
 
-
+//vérification de la deconnexion
 goAuthentificationRouter.use('/disconnect', (req, res) => {
   fDisconnect(req, res).then(() => {
       res.json({

@@ -1,5 +1,6 @@
 const goErrorList = require('../error.list');
 
+//rôles des administrateurs
 let gtRigth = [
   'admin',
   'creator',
@@ -7,6 +8,7 @@ let gtRigth = [
   'reader'
 ]
 
+//si autant rôle reconnu
 function fSendBadRigth(pRes) {
   pRes.json({
     error: goErrorList.noAuth

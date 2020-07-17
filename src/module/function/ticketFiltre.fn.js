@@ -1,3 +1,4 @@
+//modification du retour des informations json
 module.exports = {
   ticketFiltre: (poTicket) => {
     let poTicketResult = {}
