@@ -50,6 +50,11 @@ function prodPackage(cb) {
   }
 }
 
+function angular() {
+  return gulp.src('angular/**/*')
+    .pipe(gulp.dest('dist/angular'));
+}
+
 function nvmrc(cb) {
   return gulp.src('.nvmrc').pipe(gulp.dest('dist'));
 }
@@ -58,8 +63,10 @@ gulp.task('clean-scripts', cleanScripts);
 
 gulp.task('minifyJs', minifyJs);
 
+gulp.task('angular', angular);
+
 gulp.task('prodPackage', prodPackage);
 
 gulp.task('nvmrc', nvmrc);
 
-gulp.task('default', gulp.series(cleanScripts, gulp.parallel(cleanScripts, minifyJs, prodPackage, nvmrc)));
+gulp.task('default', gulp.series(cleanScripts, gulp.parallel(cleanScripts, minifyJs, angular, prodPackage, nvmrc)));

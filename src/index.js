@@ -23,8 +23,14 @@ goApp.use(bodyParser.urlencoded({
 
 goApp.use(cors());
 
+goApp.use(express.static(process.cwd()+"/angular/"));
+
 goApp.use('/API', goAuthentification);
 goApp.use('/API', goRouting);
+
+goApp.use((req,res) => {
+  res.sendFile(process.cwd()+"/angular/index.html")
+});
 
 if (process.env.NODE_ENV !== 'production') {
   const listEndpoints = require('express-list-endpoints')
