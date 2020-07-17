@@ -27,6 +27,15 @@ loRouter.get('/', function(req, res) {
     })
 });
 
+loRouter.get('/who', function(req, res) {
+  res.json({
+    idUser: req.user.idUser,
+    userLastName: req.user.userLastName,
+    userFirstName: req.user.userFirstName,
+    userRight: req.user.userRight
+  });
+});
+
 loRouter.post('/', loRigthGestion.filter('createUser'), function(req, res) {
   let loUser = {
     idUser: uuid(),
