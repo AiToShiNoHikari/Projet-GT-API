@@ -48,11 +48,13 @@ loRouter.get('/:idTicket', function(req, res) {
 });
 
 loRouter.post('/', function(req, res) {
+  console.log(req.body);
   db.Ticket.create({
       ticketCreation: req.body.ticketCreation,
       ticketDescription: req.body.ticketDescription,
       ticketHardware: req.body.ticketHardware,
-      fkUserCreator: req.user.idUser
+      fkUserCreator: req.user.idUser,
+      fkUserResponsible: req.body.fkUserResponsible
     }).then((poNewTicket) => {
       return db.History.create({
           historyModif: req.body.ticketCreation,
@@ -76,6 +78,7 @@ loRouter.post('/', function(req, res) {
             }
           ]
         })).then((poTicket) => {
+          console.log(poTicket);
           res.json(loTicketFiltre.ticketFiltre(poTicket));
         })
     })

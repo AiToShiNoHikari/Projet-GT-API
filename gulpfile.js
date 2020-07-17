@@ -50,10 +50,16 @@ function prodPackage(cb) {
   }
 }
 
+function nvmrc(cb) {
+  return gulp.src('.nvmrc').pipe(gulp.dest('dist'));
+}
+
 gulp.task('clean-scripts', cleanScripts);
 
 gulp.task('minifyJs', minifyJs);
 
 gulp.task('prodPackage', prodPackage);
 
-gulp.task('default', gulp.series(cleanScripts, minifyJs, prodPackage));
+gulp.task('nvmrc', nvmrc);
+
+gulp.task('default', gulp.series(cleanScripts, gulp.parallel(cleanScripts, minifyJs, prodPackage, nvmrc)));
