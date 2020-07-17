@@ -116,7 +116,7 @@ loRouter.put('/:idTicket', function(req, res) {
           }
         }))
 
-        if (poTicket.ticketState == 3) {
+        if (req.body.modifState == 3) {
           loPromise = loPromise.then(() => db.Ticket.update({
             ticketResolve: req.body.modifDate,
             fkUserResolver: req.user.idUser
@@ -151,19 +151,6 @@ loRouter.put('/:idTicket', function(req, res) {
       res.status(400)
       res.json(paError);
     })
-
-
-
-  /*db.Ticket.update({
-      idTicket: poTicket.idTicket,
-      ticketResolve: poTicket.ticketResolve,
-      ticketDescription: poTicket.ticketDescription,
-      ticketState: poTicket.ticketState,
-    })
-    .then((poTicket) => {
-      res.json({
-      });
-    });*/
 });
 
 loRouter.delete('/:idTicket', function(req, res) {
